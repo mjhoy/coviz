@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Browser
 import Html exposing (Html, button, div, text)
@@ -17,6 +17,8 @@ init =
 type Msg
   = Increment
   | Decrement
+  | Reset
+  | Ten
 
 
 update : Msg -> Model -> Model
@@ -28,10 +30,21 @@ update msg model =
     Decrement ->
       model - 1
 
+    Reset ->
+      0
+
+    Ten ->
+      model + 10
+
+
 view : Model -> Html Msg
 view model =
   div []
     [ button [ onClick Decrement ] [ text "-" ]
     , div [] [ text (String.fromInt model) ]
     , button [ onClick Increment ] [ text "+" ]
+    , div [] []
+    , button [ onClick Reset ] [ text "0" ]
+    , div [] []
+    , button [ onClick Ten ] [ text "+10" ]
     ]
