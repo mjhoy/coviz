@@ -13,7 +13,12 @@ import TypedSvg.Types exposing (Paint(..), px)
 
 
 main =
-    Browser.sandbox { init = init, update = update, view = view }
+    Browser.element
+      { init = init
+      , update = update
+      , view = view
+      , subscriptions = subscriptions
+      }
 
 
 
@@ -49,35 +54,29 @@ rectangle w h =
 -- Model
 
 
-type alias Model =
-    { width : Float
-    , height : Float
-    }
+type Model = Model Float
+
+type Msg
+    = Reset
+    | Update Float
+
+init : () -> (Model, Cmd Msg)
+init flags = (Model 100, Cmd.none)
 
 
-init : Model
-init =
-    { width = 100
-    , height = 100
-    }
-
-
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  Sub.none
 
 -- Update
 
 
-type Msg
-    = Reset
 
-
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
-        Reset ->
-            { model
-                | width = 500
-                , height = 500
-            }
+        Reset -> (model, Random.generate Update (Random.float 1 1000))
+        Update width -> (Model width, Cmd.none)
 
 
 
@@ -85,9 +84,9 @@ update msg model =
 
 
 view : Model -> Html Msg
-view model =
+view (Model width) =
     div []
         [ button [ onClick Reset ] [ text "x" ]
         , div [] []
-        , svg [ viewBox 0 0 800 600 ] [ rectangle model.width model.height ]
+        , svg [ viewBox 0 0 800 600 ] [ rectangle width width ]
         ]
