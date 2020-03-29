@@ -4,6 +4,12 @@ from flask import Flask
 app = Flask(__name__)  # pylint: disable=invalid-name
 
 
+@app.route("/")
+def health_check():
+    """Backend API ping test."""
+    return "Success"
+
+
 @app.route("/covid/confirmed/new/<date>")
 def get_new_confirmed(date):
     """Get new confirmed COVID-19 cases on date."""
