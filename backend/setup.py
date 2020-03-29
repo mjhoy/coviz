@@ -4,12 +4,12 @@ from setuptools import find_packages, setup
 
 def get_version():
     """Get library version."""
-    with open("VERSION") as f:
-        return f.read()
+    with open("VERSION") as buff:
+        return buff.read()
 
 
 setup(
-    name="coviz",
+    name="coviz-backend",
     version=get_version(),
     url="",
     author="Camen and Mikey",

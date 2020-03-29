@@ -2,15 +2,15 @@
 set -ex # fail on first error, print commands
 
 echo "Checking documentation..."
-python -m pydocstyle coviz
+python -m pydocstyle api
 echo "Success!"
 
 echo "Checking code style with black..."
-python -m black --line-length 90 --check coviz
+python -m black --line-length 90 --check api
 echo "Success!"
 
 echo "Checking code style with pylint..."
-python -m pylint coviz
+python -m pylint api
 echo "Success!"
 
 echo "Running unit tests..."
