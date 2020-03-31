@@ -15,10 +15,12 @@ def health_check():
 @app.route("/covid/confirmed/new/<date>")
 def get_new_confirmed(date):
     """Get new confirmed COVID-19 cases on date."""
+    print(date)
     return read_confirmed_time_series().to_json()
 
 
 @app.route("/covid/confirmed/total/<date>")
 def get_confirmed_to_date(date):
     """Get total number of COVID-19 cases to date."""
+    print(date)
     return read_confirmed_time_series().to_json()
