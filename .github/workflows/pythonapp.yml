@@ -14,11 +14,22 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Set up elm
+      uses: jorelali/setup-elm@v1
+      with:
+        elm-version: 0.19.1
+      run: |
+        cd frontend
+        elm make src/Main.elm
     - name: Install dependencies
       run: |
         cd backend
         ./scripts/install
-    - name: Run tests
+    - name: Run backend tests
       run: |
         cd backend
+        ./scripts/test
+    - name: Run frontend tests
+      run: |
+        cd frontend
         ./scripts/test
