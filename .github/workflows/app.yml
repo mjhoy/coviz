@@ -10,18 +10,12 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Set up Elm 0.19.1
-      uses: jorelali/setup-elm@v1
-      with:
-        elm-version: 0.19.1
-      run: |
-        cd frontend
-        elm make src/Main.elm
-    - name: Install dependencies
+    - name: Install backend dependencies
       run: |
         cd backend
         ./scripts/install
@@ -29,6 +23,15 @@ jobs:
       run: |
         cd backend
         ./scripts/test
+
+    - name: Set up Elm 0.19.1
+      uses: jorelali/setup-elm@v1
+      with:
+        elm-version: 0.19.1
+    - name: Compile frontend
+      run: |
+        cd frontend
+        elm make src/Main.elm
     - name: Run frontend tests
       run: |
         cd frontend
