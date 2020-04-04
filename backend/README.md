@@ -6,6 +6,8 @@ A visualization library for COVID-19 reports.
 
 We recommend that one installs this package into a virtual environment for development.
 
+1. `git clone https://github.com/mjhoy/coviz.git` to clone the repository
+1. `cd coviz && git submodule update --init` to initialize the submodule
 1. `cd backend`
 1. `pip install -r requirements.txt` to install requirements
 1. `python setup.py install` to install the backend as a package
