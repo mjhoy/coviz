@@ -1,7 +1,7 @@
 """App tools and routing for the backend."""
 import logging
 
-from flask import Flask
+from flask import Flask, Response
 
 from .coviz import read_confirmed_time_series
 
@@ -21,11 +21,16 @@ def health_check():
 def get_new_confirmed(date):
     """Get new confirmed COVID-19 cases on date."""
     _logger.info("Getting new confirmed COVID-19 cases for %s", date)
-    return read_confirmed_time_series().to_json()
+    return json_response(read_confirmed_time_series().to_json())
 
 
 @app.route("/covid/confirmed/total/<date>")
 def get_confirmed_to_date(date):
     """Get total number of COVID-19 cases to date."""
     _logger.info("Getting total confirmed COVID-19 cases by %s", date)
-    return read_confirmed_time_series().to_json()
+    return json_response(read_confirmed_time_series().to_json())
+
+
+def json_response(data):
+    """Return a Flask response with the mimetype set to JSON."""
+    return Response(data, mimetype="application/json")
