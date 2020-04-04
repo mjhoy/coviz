@@ -1,5 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eoux pipefail
+set -ex
 
 true
