@@ -13,3 +13,8 @@ We recommend that one installs this package into a virtual environment for devel
 1. `set -o allexport && source .env && set +o allexport` to import environment variables
 1. `scripts/test` to make sure that the install was successful
 1. `flask run` to run the flask server
+
+## TODO
+
+1. Get specific date in COVID data
+1. Add CI
