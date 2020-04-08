@@ -1,2 +1,0 @@
-FLASK_APP=<<path/to/flaskapp.py>>
-FLASK_ENV=<<development>>  # development or production
