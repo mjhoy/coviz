@@ -19,4 +19,3 @@ We recommend that one installs this package into a virtual environment for devel
 ## TODO
 
 1. Get specific date in COVID data
-1. Add CI
