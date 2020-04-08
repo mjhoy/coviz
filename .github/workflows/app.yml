@@ -25,7 +25,7 @@ jobs:
         ./scripts/test
 
     - name: Set up Elm 0.19.1
-      uses: mjhoy/setup-elm@v1
+      uses: mjhoy/setup-elm@c4aeaf781b80b172eec41d15bff23cc0fbdcd74a
       with:
         elm-version: 0.19.1
     - name: Compile frontend
