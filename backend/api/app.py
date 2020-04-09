@@ -2,7 +2,7 @@
 import datetime
 import logging
 
-from flask import Flask
+from flask import Flask, Response
 import pandas as pd
 
 from .coviz import read_confirmed_time_series
@@ -28,7 +28,7 @@ def get_new_confirmed(date):
     time_series = read_confirmed_time_series()
 
     data = time_series[date.strftime("%-m/%-d/%-y")].groupby(level="Country/Region").sum()
-    return data.to_json()
+    return json_response(data.to_json())
 
 
 @app.route("/covid/confirmed/total/<date>")
@@ -43,4 +43,9 @@ def get_confirmed_to_date(date):
     date_range = set(date_range).intersection(set(time_series.columns))
 
     data = time_series[date_range].groupby(level="Country/Region").sum().sum(axis=1)
-    return data.to_json()
+    return json_response(data.to_json())
+
+
+def json_response(data):
+    """Return a Flask response with the mimetype set to JSON."""
+    return Response(data, mimetype="application/json")
