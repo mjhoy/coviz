@@ -15,5 +15,6 @@ def read_confirmed_time_series():
             "api",
             "COVID-19/csse_covid_19_data/csse_covid_19_time_series/"
             "time_series_covid19_confirmed_global.csv",
-        )
+        ),
+        index_col=["Country/Region", "Province/State"],
     )

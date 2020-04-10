@@ -11,7 +11,6 @@ black==19.10b0            # via -r requirements-dev.in
 click==7.1.1              # via black, flask, pip-tools
 coverage==5.0.4           # via pytest-cov
 flask==1.1.1              # via -r requirements.in
-importlib-metadata==1.6.0  # via pluggy, pytest
 isort==4.3.21             # via pylint
 itsdangerous==1.1.0       # via flask
 jinja2==2.11.1            # via flask
@@ -37,8 +36,8 @@ regex==2020.2.20          # via black
 six==1.14.0               # via astroid, packaging, pip-tools, python-dateutil
 snowballstemmer==2.0.0    # via pydocstyle
 toml==0.10.0              # via black
-typed-ast==1.4.1          # via astroid, black
+typed-ast==1.4.1          # via black
+waitress==1.4.3           # via -r requirements.in
 wcwidth==0.1.9            # via pytest
 werkzeug==1.0.0           # via flask
 wrapt==1.11.2             # via astroid
-zipp==3.1.0               # via importlib-metadata

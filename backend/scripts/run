@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+import argparse
+import logging
+import os
+import subprocess
+
+import waitress
+
+from api.app import app
+
+logging.basicConfig(level=logging.INFO)
+_logger = logging.getLogger("backend")  # pylint: disable=invalid-name
+
+
+def start():
+    """Start the backend server."""
+    parser = argparse.ArgumentParser(description="Start the backend server.")
+    parser.add_argument(
+        "--production",
+        action="store_true",
+        help="start the server in production mode. Defaults to False",
+        default=False,
+    )
+    parser.add_argument(
+        "--port", help="port to run server on. Defaults to 5000", default="5000",
+    )
+    parser.add_argument(
+        "--host",
+        help="host to run server on. Defaults to localhost",
+        default="127.0.0.1",
+    )
+    args = parser.parse_args()
+
+    if not args.production:
+        _logger.info("Running in development...")
+        env = os.environ.copy()
+        env["FLASK_APP"] = "api/app.py"
+        env["FLASK_ENV"] = "development"
+        subprocess.run(
+            ["flask", "run", "--port", args.port, "--host", args.host], env=env
+        )
+    else:
+        _logger.info("Running in production...")
+        waitress.serve(app, host=args.host, port=args.port)
+
+
+if __name__ == "__main__":
+    start()
