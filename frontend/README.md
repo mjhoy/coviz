@@ -10,6 +10,6 @@ An elm app that displays COVID-19 data, using the backend api.
 
 ## Development
 
-1. `./scripts/dev-server` starts a development front-end server on port 5005, and expects the backend server to be running on port 5000.
+1. run `elm reactor src/Main.elm`
 2. Start up the backend server.
-3. You should now be able to load the site at localhost:5005.
+3. You should now be able to load the site at http://localhost:8000/src/Main.elm
