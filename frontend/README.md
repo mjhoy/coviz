@@ -5,8 +5,6 @@ An elm app that displays COVID-19 data, using the backend api.
 ## Installation
 
 1. Install `elm`: https://guide.elm-lang.org/install/ (0.19)
-2. Install `fswatch`: https://github.com/emcrisostomo/fswatch (for development)
-3. Make sure you have python 3 installed.
 
 ## Development
 
