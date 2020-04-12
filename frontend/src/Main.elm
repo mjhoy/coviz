@@ -6,7 +6,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode exposing (Decoder, field, int)
-import String exposing (left)
 
 
 main =
