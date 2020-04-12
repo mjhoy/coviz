@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eoux pipefail
+
+(fswatch -o src/ | while read; do elm make src/Main.elm --output public/application.js; done) &
+python -m http.server --directory public/ 5005
