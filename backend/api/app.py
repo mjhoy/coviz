@@ -12,8 +12,6 @@ app = Flask(__name__)  # pylint: disable=invalid-name
 logging.basicConfig(level=logging.INFO)
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
-FRONTEND_ADDRESS = os.environ["FRONTEND_ADDRESS"]
-
 
 @app.route("/")
 def health_check():
@@ -52,5 +50,5 @@ def get_confirmed_to_date(date):
 def json_response(data):
     """Return a Flask response with the mimetype set to JSON."""
     resp = Response(data, mimetype="application/json")
-    resp.headers["Access-Control-Allow-Origin"] = FRONTEND_ADDRESS
+    resp.headers["Access-Control-Allow-Origin"] = os.environ["FRONTEND_ADDRESS"]
     return resp
