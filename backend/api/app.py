@@ -1,6 +1,7 @@
 """App tools and routing for the backend."""
 import datetime
 import logging
+import os
 
 from flask import Flask, Response
 import pandas as pd
@@ -10,6 +11,8 @@ from .coviz import read_confirmed_time_series
 app = Flask(__name__)  # pylint: disable=invalid-name
 logging.basicConfig(level=logging.INFO)
 _logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
+
+FRONTEND_ADDRESS = os.environ["FRONTEND_ADDRESS"]
 
 
 @app.route("/")
@@ -48,4 +51,6 @@ def get_confirmed_to_date(date):
 
 def json_response(data):
     """Return a Flask response with the mimetype set to JSON."""
-    return Response(data, mimetype="application/json")
+    resp = Response(data, mimetype="application/json")
+    resp.headers["Access-Control-Allow-Origin"] = FRONTEND_ADDRESS
+    return resp
