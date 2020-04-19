@@ -1,6 +1,7 @@
 """App tools and routing for the backend."""
 import datetime
 import logging
+import os
 
 from flask import Flask, Response
 import pandas as pd
@@ -49,6 +50,5 @@ def get_confirmed_to_date(date):
 def json_response(data):
     """Return a Flask response with the mimetype set to JSON."""
     resp = Response(data, mimetype="application/json")
-    # TODO: Only add this for development mode?
-    resp.headers["Access-Control-Allow-Origin"] = "http://localhost:8000"
+    resp.headers["Access-Control-Allow-Origin"] = os.environ["FRONTEND_ADDRESS"]
     return resp

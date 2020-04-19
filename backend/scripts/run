@@ -29,11 +29,17 @@ def start():
         help="host to run server on. Defaults to localhost",
         default="127.0.0.1",
     )
+    parser.add_argument(
+        "--frontend",
+        help="URL of the frontend. Defaults to http://localhost:8000",
+        default="http://localhost:8000",
+    )
     args = parser.parse_args()
 
+    env = os.environ.copy()
+    env["FRONTEND_ADDRESS"] = args.frontend
     if not args.production:
         _logger.info("Running in development...")
-        env = os.environ.copy()
         env["FLASK_APP"] = "api/app.py"
         env["FLASK_ENV"] = "development"
         subprocess.run(
