@@ -1,9 +1,9 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onInput)
+import Html as H
+import Html.Attributes as HA
+import Html.Events as HE
 import Http
 import Json.Decode exposing (Decoder, field, int)
 
@@ -58,12 +58,18 @@ subscriptions model =
     Sub.none
 
 
-view : Model -> Html Msg
+view : Model -> H.Html Msg
 view model =
     let
         buildInputForm currentValue =
-            [ input [ type_ "text", placeholder "date", value currentValue, onInput UpdateDateInput ] []
-            , button [ onClick (Submit currentValue) ] [ text "Submit" ]
+            [ H.input
+                [ HA.type_ "text"
+                , HA.placeholder "date"
+                , HA.value currentValue
+                , HE.onInput UpdateDateInput
+                ]
+                []
+            , H.button [ HE.onClick (Submit currentValue) ] [ H.text "Submit" ]
             ]
 
         ( headerText, inputForm ) =
@@ -80,8 +86,8 @@ view model =
                 Waiting url ->
                     ( "Enter a date (YYYY-MM-DD) for total US confirmed cases:", buildInputForm url )
     in
-    div []
-        [ h1 [] [ text headerText ], div [] inputForm ]
+    H.div []
+        [ H.h1 [] [ H.text headerText ], H.div [] inputForm ]
 
 
 getCovidData : String -> Cmd Msg
